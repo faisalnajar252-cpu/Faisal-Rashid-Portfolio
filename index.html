@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eid Mubarak ✨</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    height:100vh;
+    background:linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#1a1a2e);
+    background-size:400% 400%;
+    animation:bg 12s ease infinite;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    color:#f1f1f1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+@keyframes bg{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+.card{
+    width:min(92vw,420px);
+    background:rgba(20,20,35,0.95);
+    padding:2.2rem;
+    border-radius:24px;
+    text-align:center;
+    box-shadow:0 40px 120px rgba(0,0,0,0.6);
+    animation:fade 1s ease;
+}
+
+@keyframes fade{
+    from{opacity:0;transform:translateY(20px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+h1{
+    font-size:1.8rem;
+    margin-bottom:0.3rem;
+}
+
+.sub{
+    font-size:0.85rem;
+    opacity:0.6;
+    margin-bottom:1.2rem;
+}
+
+p{
+    line-height:1.7;
+    font-size:1.05rem;
+    opacity:0.9;
+}
+
+button{
+    margin-top:1.8rem;
+    padding:0.9rem 2rem;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(45deg,#ffd369,#ff9f1c);
+    color:#111;
+    font-weight:600;
+    cursor:pointer;
+    transition:all 0.3s ease;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+.hidden{display:none}
+
+input{
+    width:100%;
+    padding:0.9rem;
+    border-radius:12px;
+    border:none;
+    outline:none;
+    margin-top:1rem;
+    font-size:1rem;
+}
+
+.upi{
+    margin-top:1.5rem;
+    font-weight:600;
+    color:#ffd369;
+    word-break:break-all;
+}
+
+.copy{
+    margin-top:0.8rem;
+    font-size:0.9rem;
+    opacity:0.7;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="card" id="p1">
+<h1>🌙 Eid Mubarak</h1>
+<div class="sub">by Faisal Rashid</div>
+<p>
+May Allah fill your life with barakah,<br>
+forgive your sins, and accept all your duas.<br><br>
+"Allah intends ease for you and does not intend hardship." (2:185)
+</p>
+<button onclick="next(1)">Continue</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="card hidden" id="p2">
+<h1>✨ A Gentle Wish</h1>
+<div class="sub">by Faisal Rashid</div>
+<p>
+May your heart always stay connected to Allah,<br>
+your رزق increase, and your worries fade away.<br><br>
+May this Eid mark the beginning of something beautiful in your life.
+</p>
+<button onclick="next(2)">Continue</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="card hidden" id="p3">
+<h1>🤲 One Small Sunnah</h1>
+<div class="sub">by Faisal Rashid</div>
+<p>
+Eid is about sharing happiness.<br><br>
+If this message made you smile,<br>
+you already know what comes next 😄
+</p>
+<button onclick="next(3)">Proceed</button>
+</div>
+
+<!-- PAYMENT -->
+<div class="card hidden" id="pay">
+<h1>🎁 Send Eidi</h1>
+<div class="sub">for Faisal Rashid</div>
+<p>
+Your Eidi will be received with gratitude and duas 🤍<br><br>
+Even a small amount counts.
+</p>
+
+<input id="amt" type="number" value="100">
+
+<div class="upi">
+faisalnajar151-1@oksbi
+</div>
+
+<div class="copy" onclick="copyUPI()">Tap to copy UPI</div>
+
+<button onclick="pay()">Send Eidi 🤍</button>
+</div>
+
+<script>
+function next(n){
+document.getElementById("p"+n).classList.add("hidden");
+if(n<3){
+document.getElementById("p"+(n+1)).classList.remove("hidden");
+}else{
+document.getElementById("pay").classList.remove("hidden");
+}
+}
+
+function pay(){
+let amt=document.getElementById("amt").value || "100";
+let upi="faisalnajar151-1@oksbi";
+let link=`upi://pay?pa=${upi}&pn=Faisal%20Rashid%20Eidi&am=${amt}&cu=INR`;
+window.location.href=link;
+}
+
+function copyUPI(){
+navigator.clipboard.writeText("faisalnajar151-1@oksbi");
+alert("UPI ID copied!");
+}
+</script>
+
+</body>
+</html>
